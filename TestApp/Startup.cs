@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TestApp.Models;
 
 namespace TestApp
 {
@@ -28,6 +29,9 @@ namespace TestApp
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddSingleton(Configuration);
+            services.AddDbContext<AppDbContext>();
+            services.AddTransient<AppDbSeed>();
             services.AddMvc();
         }
 
