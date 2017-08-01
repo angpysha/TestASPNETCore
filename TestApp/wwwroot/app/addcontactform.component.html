@@ -1,0 +1,30 @@
+﻿<div class="row">
+    <h3>Додати новий контакт</h3>
+    <form>
+        <div class="form-group">
+            <label for="Name">Ім'я</label>
+            <input type="text" class="form-control" 
+                   [(ngModel)]="model.Name"
+                   name="Name" id="Name"/>
+        </div>
+        <div class="form-group">
+            <label for="Surname">Прізвище</label>
+            <input type="text" class="form-control" 
+                   [(ngModel)]="model.Surname"
+                   name="Surname" id="Surname"/>
+        </div>
+        <div class="form-group">
+            <label for="Email">Електрона пошта</label>
+            <input type="text" class="form-control" 
+                   [(ngModel)]="model.Email"
+                   name="Email" id="Email"/>
+        </div>
+        <div class="form-group">
+            <label for="PhoneNumber">Телефон</label>
+            <input type="text" class="form-control" 
+                   [(ngModel)]="model.PhoneNumber"
+                   name="PhoneNumber" id="PhoneNumber"/>
+        </div>
+        <button type="button" (click)="OnSubmit()" class="btn btn-primary">Додати</button>
+    </form>
+</div>

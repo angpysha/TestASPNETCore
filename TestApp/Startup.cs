@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -50,7 +51,17 @@ namespace TestApp
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+           /* app.Use(async (context, next) =>
+            {
+                await next();
 
+                if (context.Response.StatusCode == 404
+                    && !Path.HasExtension(context.Request.Path.Value))
+                {
+                    context.Request.Path = "/index.html";
+                    await next();
+                }
+            });*/
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -58,6 +69,10 @@ namespace TestApp
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "spa-fallback",
+                    template: "{*url}",
+                    defaults: new {controller = "Home", action = "Contacts"});
             });
         }
     }
